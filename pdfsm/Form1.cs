@@ -187,7 +187,7 @@ namespace pdfsm {
         }
 
         private void button5_Click(object sender, EventArgs e) {
-            MessageBox.Show(this, "This program selects pages from a set of PDF files specified in an INI Selector File and merges them to an output file.", "PDF Select & Merge", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, "This program selects pages from a set of PDF files specified in an INI Selector File and merges them to an output file.\n\nIt includes PDFsharp to copy pages and Ghostscript to fix corrupted files.", "PDF Select & Merge", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button6_Click(object sender, EventArgs e) {
