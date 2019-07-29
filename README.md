@@ -5,6 +5,8 @@ This is a little utility useful for summarizing a lot of PDF documents:
 
 The program uses the PDFsharp library and also includes a binary of Ghostscript in order to automatically fix corrupted source documents as well as Ookii.Dialogs for a modern folder browser dialog. PDF Merge is distributed under the GPLv3 license.
 
+pdfsm is written in C# and requires at least .NET Framework 4.0 which comes pre-installed with modern Windows versions (XP should be compatible however this wasn't tested).
+
 **For this program to work you need to create a selection file first!** This is described in the linked wiki article below.
 
 ## Wiki
