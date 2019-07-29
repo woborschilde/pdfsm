@@ -16,9 +16,30 @@ namespace pdfsm {
 
         public Form1() {
             InitializeComponent();
+            LoadConfig();
         }
 
         #region Functions
+        /// <summary>Loads saved paths from the config file.</summary>
+        private void LoadConfig() {
+            Append("Using " + Path.GetFullPath(ConfigFile));
+
+            if (File.Exists(ConfigFile)) {
+                SelectFile = Read("General", "SelectFile", "", ConfigFile);
+                InputPath = Read("General", "InputPath", "", ConfigFile);
+                SaveFile = Read("General", "SaveFile", "", ConfigFile);
+
+                textBox1.Text = SelectFile;
+                textBox2.Text = InputPath;
+                textBox3.Text = SaveFile;
+            } else {
+                Append(" (not existing yet)");
+            }
+
+            Append("\n\n");
+            MergeButtonAvailable();
+        }
+
         /// <summary>Checks if the merge button is available (all input fields have to be filled).</summary>
         private void MergeButtonAvailable() {
             if (!textBox1.Text.Equals("") && !textBox2.Text.Equals("") && !textBox3.Text.Equals("")) {
@@ -78,6 +99,20 @@ namespace pdfsm {
 
                 // For each page in file
                 foreach (string p in SelectPagesArray) {
+                    if (p.Equals("*")) {
+                        for (int j = 1; j <= PdfIn.PageCount; j++) {
+                            Append("Copying page " + j + "...\n");
+                            CopyPage(PdfIn, PdfOut, Convert.ToInt32(j));
+                        }
+                        continue;
+                    } else if (p.Contains("-")) {
+                        String[] pageRange = p.Split('-');
+                        for (int j = Convert.ToInt32(pageRange[0]); j <= Convert.ToInt32(pageRange[1]); j++) {
+                            Append("Copying page " + j + "...\n");
+                            CopyPage(PdfIn, PdfOut, Convert.ToInt32(j));
+                        }
+                        continue;
+                    }
                     Append("Copying page " + p + "...\n");
                     CopyPage(PdfIn, PdfOut, Convert.ToInt32(p));  // Actual copy process
                 }

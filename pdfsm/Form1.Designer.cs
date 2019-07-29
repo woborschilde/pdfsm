@@ -146,7 +146,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(182, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "v1.0 (20.07.2019), © woborschil.de";
+            this.label5.Text = "v1.1 (29.07.2019), © woborschil.de";
             // 
             // textBox3
             // 
